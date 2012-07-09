@@ -209,9 +209,9 @@ class Pep8Runner(LintRunner):
       spiders/structs.py:51:9: E301 expected 1 blank line, found 0 """
 
     command = 'pep8'
-    # sane_default_ignore_codes = set([
-    #     'RW29', 'W391',
-    #     'W291', 'WO232'])
+    # TODO: Temporarily adding E501 (long lines) to default ignores (django)
+    sane_default_ignore_codes = set([
+        'E501'])
 
     output_matcher = re.compile(
         r'(?P<filename>.+):'
@@ -231,7 +231,7 @@ class Pep8Runner(LintRunner):
 
     @property
     def run_flags(self):
-        return '--repeat', '--ignore=' + ','.join(self.config.IGNORE_CODES)
+        return '--repeat', '--ignore=' + ','.join(self.operative_ignore_codes)
 
 
 class TestRunner(LintRunner):
