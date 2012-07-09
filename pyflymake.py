@@ -11,6 +11,7 @@ from subprocess import Popen, PIPE
 
 MAX_DESCRIPTION_LENGTH = 60
 
+
 class LintRunner(object):
     """ Base class provides common functionality to run
           python code checkers. """
