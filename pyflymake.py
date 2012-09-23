@@ -276,21 +276,6 @@ class TestRunner(LintRunner):
         return self.config.TEST_RUNNER_FLAGS
 
 
-# def find_config(path, trigger_type):
-#     if path in ('', '/'):
-#         module = DefaultConfig()
-#     else:
-#         try:
-#             parent_dir = os.path.join(path, '.pyflymakerc')
-#             # dirtiest trick ever:
-#             __builtins__.TRIGGER_TYPE = trigger_type
-#             module = imp.load_source('config', parent_dir)
-#             del __builtins__.TRIGGER_TYPE
-#         except IOError:
-#             module = find_config(os.path.split(path)[0], trigger_type)
-#     return module
-
-
 class DefaultConfig(object):
     def __init__(self):
         self.VIRTUALENV = None
@@ -349,7 +334,6 @@ def main():
         level=options.debug and logging.DEBUG or logging.WARNING,
         format='%(levelname)-8s %(message)s')
 
-    #config = find_config(os.path.realpath(args[0]), options.trigger_type)
     config = DefaultConfig()
     for key, value in DEFAULT_CONFIG.items():
         if not hasattr(config, key):
